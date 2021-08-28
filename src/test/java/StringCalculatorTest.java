@@ -61,4 +61,12 @@ public class StringCalculatorTest {
         assertEquals("Negatives Not Allowed: -9,-3,-8,-2,-1",runtimeException.getMessage());
     }
 
+    @Test
+    public void IgnoreNumbersBiggerThan1000(){
+        int sum = stringCalculator.add("//;\n6;9;5;1001;1002;4");
+        assertEquals(24, sum);
+    }
+
+
+
 }

@@ -14,7 +14,7 @@ public class StringCalculator {
 
         NegativeNumberException(StringNumbers);
 
-        return StringNumbers.stream().mapToInt(Integer::valueOf).sum();
+        return StringNumbers.stream().mapToInt(Integer::valueOf).filter(num -> num <= 1000).reduce(0, (num1, num2) -> num1 + num2);
     }
 
     private String PatternSeparator(String input) {
