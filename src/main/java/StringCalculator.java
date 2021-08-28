@@ -8,10 +8,7 @@ public class StringCalculator {
         if("".equalsIgnoreCase(inputString)){
             return 0;
         }
-        List<String> StringNumbers = Splitter.onPattern(",").splitToList(inputString);
-        if(StringNumbers.size() == 1){
-            return Integer.valueOf(inputString);
-        }
-        return Integer.valueOf(StringNumbers.get(0)) + Integer.valueOf(StringNumbers.get(1));
+        List<String> StringNumbers = Splitter.onPattern(",|\n").splitToList(inputString);
+        return StringNumbers.stream().mapToInt(Integer::valueOf).sum();
     }
 }

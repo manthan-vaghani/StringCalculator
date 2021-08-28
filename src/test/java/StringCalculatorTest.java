@@ -30,4 +30,16 @@ public class StringCalculatorTest {
         assertEquals(15, sum);
     }
 
+    @Test
+    public void ReturnSumOfUnknownAmountOfNumbers(){
+        int sum = stringCalculator.add("6,9,3,5,8,7,2,4,1");
+        assertEquals(45, sum);
+    }
+
+    @Test
+    public void AcceptNewLineDelimiter(){
+        int sum = stringCalculator.add("6,9\n5");
+        assertEquals(20, sum);
+    }
+
 }
