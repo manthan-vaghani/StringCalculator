@@ -1,10 +1,8 @@
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static java.util.Arrays.asList;
 
 public class StringCalculator {
@@ -13,17 +11,23 @@ public class StringCalculator {
         if ("".equalsIgnoreCase(inputString)) {
             return 0;
         }
+
         List<String> StringNumbers = Splitter.onPattern(PatternSeparator(inputString)).omitEmptyStrings()
-                .splitToList(inputString.replace("//", "").replace("[", "")
-                        .replace("]", ""));
+                                        .splitToList(IgnoredDelimiters(inputString));
 
         NegativeNumberException(StringNumbers);
 
-        return StringNumbers.stream().mapToInt(Integer::valueOf).filter(num -> num <= 1000).reduce(0, (num1, num2) -> num1 + num2);
+        return StringNumbers.stream().mapToInt(Integer::valueOf).filter(num -> num <= 1000)
+                .reduce(0, (num1, num2) -> num1 + num2);
     }
 
     private String PatternSeparator(String input) {
         return "[" + Joiner.on("|").join(DelimiterPattern(input)) + "|\n" + "]";
+    }
+
+    private String IgnoredDelimiters(String input){
+       return  input.replace("//", "").replace("[", "")
+                .replace("]", "");
     }
 
     private List<String> DelimiterPattern(String input) {

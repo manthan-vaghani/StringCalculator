@@ -1,6 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -15,38 +14,32 @@ public class StringCalculatorTest {
 
     @Test
     public void ForEmptyString(){
-        int sum = stringCalculator.add("");
-        assertEquals(0, sum);
+        assertEquals(0, stringCalculator.add(""));
     }
 
     @Test
     public void ForSingleLatter(){
-        int sum = stringCalculator.add("1");
-        assertEquals(1, sum);
+        assertEquals(1, stringCalculator.add("1"));
     }
 
     @Test
     public void ReturnSumOfTwoDigit(){
-        int sum = stringCalculator.add("5,10");
-        assertEquals(15, sum);
+        assertEquals(15, stringCalculator.add("5,10"));
     }
 
     @Test
     public void ReturnSumOfUnknownAmountOfNumbers(){
-        int sum = stringCalculator.add("6,9,3,5,8,7,2,4,1");
-        assertEquals(45, sum);
+        assertEquals(45, stringCalculator.add("6,9,3,5,8,7,2,4,1"));
     }
 
     @Test
     public void AcceptNewLineDelimiter(){
-        int sum = stringCalculator.add("6,9\n5");
-        assertEquals(20, sum);
+        assertEquals(20, stringCalculator.add("6,9\n5"));
     }
 
     @Test
     public void SupportDifferentDelimiter(){
-        int sum = stringCalculator.add("//;\n6;9;5");
-        assertEquals(20, sum);
+        assertEquals(20, stringCalculator.add("//;\n6;9;5"));
     }
 
     @Test
@@ -63,25 +56,21 @@ public class StringCalculatorTest {
 
     @Test
     public void IgnoreNumbersBiggerThan1000(){
-        int sum = stringCalculator.add("//;\n6;9;5;1001;1002;4");
-        assertEquals(24, sum);
+        assertEquals(24, stringCalculator.add("//;\n6;9;5;1001;1002;4"));
     }
 
     @Test
     public void AcceptSingleDelimiter(){
-        int sum = stringCalculator.add("//[;]\n6;9;5");
-        assertEquals(20, sum);
+        assertEquals(20, stringCalculator.add("//[;]\n6;9;5"));
     }
 
     @Test
     public void AcceptMultipleDelimiter(){
-        int sum = stringCalculator.add("//[;][*]\n6;9*5");
-        assertEquals(20, sum);
+        assertEquals(20, stringCalculator.add("//[;][*]\n6;9*5"));
     }
 
     @Test
     public void AcceptMultipleDelimiterWithAnyLength(){
-        int sum = stringCalculator.add("//[***]\n6***9***5");
-        assertEquals(20, sum);
+        assertEquals(20, stringCalculator.add("//[***]\n6***9***5"));
     }
 }
