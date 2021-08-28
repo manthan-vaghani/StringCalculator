@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class StringCalculatorTest {
 
@@ -40,6 +41,24 @@ public class StringCalculatorTest {
     public void AcceptNewLineDelimiter(){
         int sum = stringCalculator.add("6,9\n5");
         assertEquals(20, sum);
+    }
+
+    @Test
+    public void SupportDifferentDelimiter(){
+        int sum = stringCalculator.add("//;\n6;9;5");
+        assertEquals(20, sum);
+    }
+
+    @Test
+    public void ForNegativeNumbers(){
+        RuntimeException runtimeException = null;
+        try {
+            stringCalculator.add("6,-9,-3,5,-8,7,-2,4,-1");
+        } catch (RuntimeException e) {
+            runtimeException = e;
+        }
+        assertNotNull(runtimeException);
+        assertEquals("Negatives Not Allowed: -9,-3,-8,-2,-1",runtimeException.getMessage());
     }
 
 }
