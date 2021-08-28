@@ -67,6 +67,21 @@ public class StringCalculatorTest {
         assertEquals(24, sum);
     }
 
+    @Test
+    public void AcceptSingleDelimiter(){
+        int sum = stringCalculator.add("//[;]\n6;9;5");
+        assertEquals(20, sum);
+    }
 
+    @Test
+    public void AcceptMultipleDelimiter(){
+        int sum = stringCalculator.add("//[;][*]\n6;9*5");
+        assertEquals(20, sum);
+    }
 
+    @Test
+    public void AcceptMultipleDelimiterWithAnyLength(){
+        int sum = stringCalculator.add("//[***]\n6***9***5");
+        assertEquals(20, sum);
+    }
 }
